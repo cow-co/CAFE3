@@ -8,13 +8,13 @@ _briefing = _briefing + "
 Give self CAFE admin menu</execute><br/>
 <font size='18'>Respawn system</font><br/><br/>
 
-|- <execute expression=""hint 'Wave spawned!'; [west] call f_fnc_forceRespawnWave;"">
+|- <execute expression=""hint 'Wave spawned!';[west, true] call f_fnc_triggerRespawnWave;"">
 Force respawn wave for BLUFOR.</execute><br/><br/>
-|- <execute expression=""hint 'Wave spawned!'; [east] call f_fnc_forceRespawnWave;"">
+|- <execute expression=""hint 'Wave spawned!'; [east, true] call f_fnc_triggerRespawnWave;"">
 Force respawn wave for OPFOR.</execute><br/><br/>
-|- <execute expression=""hint 'Wave spawned!'; [independent] call f_fnc_forceRespawnWave;"">
+|- <execute expression=""hint 'Wave spawned!'; [independent, true] call f_fnc_triggerRespawnWave;"">
 Force respawn wave for INDFOR.</execute><br/><br/>
-|- <execute expression=""hint 'Wave spawned!'; [civilian] call f_fnc_forceRespawnWave;"">
+|- <execute expression=""hint 'Wave spawned!'; [civilian, true] call f_fnc_triggerRespawnWave;"">
 Force respawn wave for CIV.</execute><br/><br/>
 ";
 /*
