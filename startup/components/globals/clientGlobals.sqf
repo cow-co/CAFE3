@@ -14,3 +14,5 @@ LOAD_GLOBALS(gearScript)
 LOAD_GLOBALS(radio)
 
 LOAD_GLOBALS(aceActions)
+
+LOAD_GLOBALS(slottingGenerator)
