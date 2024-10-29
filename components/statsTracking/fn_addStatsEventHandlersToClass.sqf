@@ -38,47 +38,6 @@ if (hasInterface) then {
 			_text = _text + format ["%1 | Fired: %2<br/>", _ammo, _shots];
 		} forEach _currentShots;
 		_text = _text + format ["You went unconscious %1 times<br/>", _uncons];_playersKills = createHashMap;
-
-		// _playersKills = createHashMap;
-		// _killLogs = profileNamespace getVariable [FULL_KILL_LOG_KEY_CLIENT, []];
-		// if (isNil 'f_var_currentKillLogIndex') then
-		// {
-		// 	f_var_currentKillLogIndex = count _killLogs;
-		// };
-		// _killTracking = _killLogs select f_var_currentKillLogIndex;
-
-		// {
-
-		// 	_entry = _x;
-		// 	_entryType = _entry select 0;
-
-		// 	if (_entryType isEqualTo "Killed") then
-		// 	{
-		// 		_killer = _entry select 3;
-		// 		_killerName = _killer select 2;
-		// 		_killerSide = _killer select 1;
-		// 		_killerType = _killer select 0;
-
-		// 		_playerLoadouts = ["CO", "SL", "med", "ftl", "eng", "gren", "mk", "mmg", "ammg", "rif", "ar"];	// TODO get the actual list of defined loadouts
-		// 		_isPlayerLoadout = (_playerLoadouts findIf { tolower _x == _killerType } > -1);
-		// 		_isBlufor = (_killerSide == west);
-				
-		// 		if (_isPlayerLoadout == true) then {
-		// 			if (_isBlufor == true) then {
-		// 				_currentKills = _playersKills getOrDefault [_killerName, 0];
-		// 				_currentKills = _currentKills + 1;
-		// 				_playersKills set [_killerName, _currentKills];
-		// 			};
-		// 		};
-		// 	};
-
-		// } forEach _killTracking;
-
-		// _killsText = "";
-		// {
-		// 	_killsText = _killsText + format ["%1 got %2 kills<br/>", _x, _y];
-		// } forEach _playersKills;
 		missionNamespace setVariable ["cafe_playerStatsStr", _text, false];
-		// missionNamespace setVariable ["cafe_killsListStr", _killsText, false];
 	}];
 };
