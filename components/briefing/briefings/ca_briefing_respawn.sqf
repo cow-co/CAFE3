@@ -109,7 +109,7 @@ switch _mode do
 	{
 		modeName = RESPAWN_MODE_NAME_TIMED;
 	};
-	default:
+	default
 	{
 		_modeName = "Not set";
 	};
