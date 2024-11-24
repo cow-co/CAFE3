@@ -10,9 +10,10 @@ if (hasInterface) then {
 		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
 		if (_unit == player) then {
 			_currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
-			_currentCount = _currentShots getOrDefault [_ammo, 0];
+			_magName = getText (configFile >> "CfgMagazines" >> _magazine >> "displayName");
+			_currentCount = _currentShots getOrDefault [_magName, 0];
 			_updated = _currentCount + 1;
-			_currentShots set [_ammo, _updated];
+			_currentShots set [_magName, _updated];
 			missionNamespace setVariable ["cafe_playerShots", _currentShots, false];
 		};
 	}] call CBA_fnc_addEventHandler;
@@ -32,13 +33,15 @@ if (hasInterface) then {
 		systemChat "Ending";
 		_currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
 		_uncons = missionNamespace getVariable ["cafe_playerUncons", 0];
+		_tableRows = [["Magazine", "| Rounds expended <br/>"]];
 		_text = "";
 		{
-			_ammo = _x;
-			_shots = _y;
-			_text = _text + format ["%1 | Fired: %2<br/>", _ammo, _shots];
+			_magName = _x;
+			_shots = format ["| %1 <br/>", _y];
+			_tableRows pushBack [_magName, _shots];
 		} forEach _currentShots;
-		_text = _text + format ["You went unconscious %1 times<br/>", _uncons];
+		_text = _text + (_tableRows call BIS_fnc_alignTabs);
+		_text = _text + format ["<br/>You went unconscious %1 time(s)<br/>", _uncons];
 		missionNamespace setVariable ["cafe_playerStatsStr", _text, false];
 	}];
 };
