@@ -22,7 +22,6 @@ if (hasInterface) then {
 		if (_unit == player && _state == true) then {
 			_currentUncons = missionNamespace getVariable ["cafe_playerUncons", 0];
 			_updated = _currentUncons + 1;
-			systemChat format ["Current Uncons: %1, New uncons: %2, state is %3", _currentUncons, _updated, _state];
 			missionNamespace setVariable ["cafe_playerUncons", _updated, false];
 		};
 	}] call CBA_fnc_addEventHandler;
