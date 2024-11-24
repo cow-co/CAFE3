@@ -87,27 +87,27 @@ switch _mode do
 	};
 	case _respawnModeTimedTicketsText: 
 	{
-		_modeName = RESPAWN_MODE_NAME_TIMED;
+		_modeName = RESPAWN_MODE_NAME_TIMED_TICKETS;
 	};
 	case _respawnModeTimedWavesText: 
 	{
-		_modeName = RESPAWN_MODE_NAME_TIMED;
+		_modeName = RESPAWN_MODE_NAME_TIMED_WAVES;
 	};
 	case _respawnModeTicketsText: 
 	{
-		_modeName = RESPAWN_MODE_NAME_TIMED;
+		_modeName = RESPAWN_MODE_NAME_TICKETS;
 	};
 	case _respawnModeTimedWavesTicketsText: 
 	{
-		_modeName = RESPAWN_MODE_NAME_TIMED;
+		_modeName = RESPAWN_MODE_NAME_TIMED_WAVES_TICKETS;
 	};
 	case _respawnModeTriggeredWavesText: 
 	{
-		_modeName = RESPAWN_MODE_NAME_TIMED;
+		_modeName = RESPAWN_MODE_NAME_TRIGGERED_WAVES;
 	};
 	case _respawnModeTriggeredWavesTicketsText: 
 	{
-		_modeName = RESPAWN_MODE_NAME_TIMED;
+		_modeName = RESPAWN_MODE_NAME_TRIGGERED_WAVES_TICKETS;
 	};
 	default
 	{
