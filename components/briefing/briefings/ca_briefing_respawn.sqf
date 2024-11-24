@@ -79,26 +79,40 @@ if (_side == civilian) then {
 #endif
 };
 
-if (_mode == _respawnModeTimedText) then {
-	_modeName = RESPAWN_MODE_NAME_TIMED;
-}; 
-if (_mode == _respawnModeTimedTicketsText) then {
-	_modeName = RESPAWN_MODE_NAME_TIMED_TICKETS;
-};
-if (_mode == _respawnModeTimedWavesText) then {
-	_modeName = RESPAWN_MODE_NAME_TIMED_WAVES;
-}; 
-if (_mode == _respawnModeTicketsText) then {
-	_modeName = RESPAWN_MODE_NAME_TICKETS;
-}; 
-if (_mode == _respawnModeTimedWavesTicketsText) then {
-	_modeName = RESPAWN_MODE_NAME_TIMED_WAVES_TICKETS;
-}; 
-if (_mode == _respawnModeTriggeredWavesText) then {
-	_modeName = RESPAWN_MODE_NAME_TRIGGERED_WAVES;
-};
-if (_mode == _respawnModeTriggeredWavesTicketsText) then {
-	_modeName = RESPAWN_MODE_NAME_TRIGGERED_WAVES_TICKETS;
+switch _mode do 
+{
+	case _respawnModeTimedText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	case _respawnModeTimedTicketsText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	case _respawnModeTimedWavesText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	case _respawnModeTicketsText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	case _respawnModeTimedWavesTicketsText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	case _respawnModeTriggeredWavesText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	case _respawnModeTriggeredWavesTicketsText: 
+	{
+		modeName = RESPAWN_MODE_NAME_TIMED;
+	};
+	default:
+	{
+		_modeName = "Not set";
+	};
 };
 
 _briefing = _briefing + format ["
