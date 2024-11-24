@@ -1,8 +1,9 @@
 // Adds event handlers to the given unit, to track various stats for viewing on the debriefing.
 // These event handlers are local to the client, and the data they collect is relevant only 
 // to the client, so we don't need to sync the data across the network.
+params ["_unit"];
 
-// TODO Ensure these do run locally and not globally
+if !(_unit isEqualTo player) exitWith {};
 
 if (hasInterface) then {
 	["ace_firedPlayer", {
