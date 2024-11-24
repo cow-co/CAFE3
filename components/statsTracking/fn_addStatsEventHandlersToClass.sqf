@@ -7,19 +7,22 @@
 if (hasInterface) then {
 	["ace_firedPlayer", {
 		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
-		_currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
-		_currentCount = _currentShots getOrDefault [_ammo, 0];
-		_updated = _currentCount + 1;
-		_currentShots set [_ammo, _updated];
-		missionNamespace setVariable ["cafe_playerShots", _currentShots, false];
+		if (_unit == player) then {
+			_currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
+			_currentCount = _currentShots getOrDefault [_ammo, 0];
+			_updated = _currentCount + 1;
+			_currentShots set [_ammo, _updated];
+			missionNamespace setVariable ["cafe_playerShots", _currentShots, false];
+		};
 	}] call CBA_fnc_addEventHandler;
 
 	["ace_unconscious", {
 		params ["_unit", "_state"];
 
-		if (_unit == player) then {
+		if (_unit == player && _state == true) then {
 			_currentUncons = missionNamespace getVariable ["cafe_playerUncons", 0];
 			_updated = _currentUncons + 1;
+			systemChat format ["Current Uncons: %1, New uncons: %2, state is %3", _currentUncons, _updated, _state];
 			missionNamespace setVariable ["cafe_playerUncons", _updated, false];
 		};
 	}] call CBA_fnc_addEventHandler;
