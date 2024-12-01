@@ -9,10 +9,10 @@ if (hasInterface) then {
 	["ace_firedPlayer", {
 		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
 		if (_unit == player) then {
-			_currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
-			_magName = getText (configFile >> "CfgMagazines" >> _magazine >> "displayName");
-			_currentCount = _currentShots getOrDefault [_magName, 0];
-			_updated = _currentCount + 1;
+			private _currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
+			private _magName = getText (configFile >> "CfgMagazines" >> _magazine >> "displayName");
+			private _currentCount = _currentShots getOrDefault [_magName, 0];
+			private _updated = _currentCount + 1;
 			_currentShots set [_magName, _updated];
 			missionNamespace setVariable ["cafe_playerShots", _currentShots, false];
 		};
@@ -22,8 +22,8 @@ if (hasInterface) then {
 		params ["_unit", "_state"];
 
 		if (_unit == player && _state == true) then {
-			_currentUncons = missionNamespace getVariable ["cafe_playerUncons", 0];
-			_updated = _currentUncons + 1;
+			private _currentUncons = missionNamespace getVariable ["cafe_playerUncons", 0];
+			private _updated = _currentUncons + 1;
 			missionNamespace setVariable ["cafe_playerUncons", _updated, false];
 		};
 	}] call CBA_fnc_addEventHandler;
@@ -31,13 +31,13 @@ if (hasInterface) then {
 	addMissionEventHandler ["Ended",
 	{
 		systemChat "Ending";
-		_currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
-		_uncons = missionNamespace getVariable ["cafe_playerUncons", 0];
-		_tableRows = [["Magazine", "| Rounds expended <br/>"]];
-		_text = "";
+		private _currentShots = missionNamespace getVariable ["cafe_playerShots", createHashMap];
+		private _uncons = missionNamespace getVariable ["cafe_playerUncons", 0];
+		private _tableRows = [["Magazine", "| Rounds expended <br/>"]];
+		private _text = "";
 		{
-			_magName = _x;
-			_shots = format ["| %1 <br/>", _y];
+			private _magName = _x;
+			private _shots = format ["| %1 <br/>", _y];
 			_tableRows pushBack [_magName, _shots];
 		} forEach _currentShots;
 		_text = _text + (_tableRows call BIS_fnc_alignTabs);
