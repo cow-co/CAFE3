@@ -1,23 +1,23 @@
 // CA - Respawn briefing section
 // ====================================================================================
 
-_briefing = "";
-_side = side player;
+private _briefing = "";
+private _side = side player;
 
-_respawnModeTimedText = str RESPAWN_MODE_TIMED;
-_respawnModeTimedTicketsText = str RESPAWN_MODE_TIMED_TICKETS;
-_respawnModeTimedWavesText = str RESPAWN_MODE_TIMED_WAVES;
-_respawnModeTicketsText = str RESPAWN_MODE_TICKETS;
-_respawnModeTimedWavesTicketsText = str RESPAWN_MODE_TIMED_WAVES_TICKETS;
-_respawnModeTriggeredWavesText = str RESPAWN_MODE_TRIGGERED_WAVES;
-_respawnModeTriggeredWavesTicketsText = str RESPAWN_MODE_TRIGGERED_WAVES_TICKETS;
+private _respawnModeTimedText = str RESPAWN_MODE_TIMED;
+private _respawnModeTimedTicketsText = str RESPAWN_MODE_TIMED_TICKETS;
+private _respawnModeTimedWavesText = str RESPAWN_MODE_TIMED_WAVES;
+private _respawnModeTicketsText = str RESPAWN_MODE_TICKETS;
+private _respawnModeTimedWavesTicketsText = str RESPAWN_MODE_TIMED_WAVES_TICKETS;
+private _respawnModeTriggeredWavesText = str RESPAWN_MODE_TRIGGERED_WAVES;
+private _respawnModeTriggeredWavesTicketsText = str RESPAWN_MODE_TRIGGERED_WAVES_TICKETS;
 
 // Defaults for if macros are not defined
-_delay = "Not set";
-_modeName = "Not set";
-_sideTickets = "Not set";
-_individualTickets = "Not set";
-_mode = null;
+private _delay = "Not set";
+private _modeName = "Not set";
+private _sideTickets = "Not set";
+private _individualTickets = "Not set";
+private _mode = null;
 
 if (_side == west) then {
 #ifdef RESPAWN_DELAY_BLUFOR
