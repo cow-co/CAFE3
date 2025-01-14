@@ -22,8 +22,13 @@ if (isNull _object) then
 		params ["_dialogValues", "_args"];
 		_dialogValues params ["_isLarge", "_isProxy", "_proxySide", "_proxyRange"];
 		_args params ["_object"];
-		[_object, _isLarge, _isProxy, _proxySide, _proxyRange] remoteExec ["f_fnc_addIEDToObject", 2];
-	    ["Adding IED to '%1'.", _object] call zen_common_fnc_showMessage;
+		private _isAlreadyIED = _object getVariable ["isIED", false];
+		if (_isAlreadyIED) then {
+	    	["Object is already an IED", _object] call zen_common_fnc_showMessage;
+		} else {
+			[_object, _isLarge, _isProxy, _proxySide, _proxyRange] remoteExec ["f_fnc_addIEDToObject", 2];
+			["Added IED to '%1'.", _object] call zen_common_fnc_showMessage;
+		};
 	},
 	{},
 	[_object]] call zen_dialog_fnc_create;
