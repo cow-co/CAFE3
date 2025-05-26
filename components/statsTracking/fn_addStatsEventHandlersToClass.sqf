@@ -43,7 +43,24 @@ if (hasInterface) then
 
 		_text = _text + (_tableRows call BIS_fnc_alignTabs);
 		_text = _text + format ["<br/>You went unconscious %1 time(s)<br/>", cafe_playerUncons];
+		_text = _text + "<br/>You were friendly fired by the following people: <br/>";
+
+		{
+			_text = _text + format ["<br/>%1 time(s) by %2<br/>", _y, _x];
+		} forEach cafe_playerFriendlyFires;
 
 		missionNamespace setVariable ["cafe_playerStatsStr", _text, false];
 	}];
+
+	_unit addMPEventHandler ["MPHit", {
+		params ["_unit", "_causedBy", "_damage", "_instigator"];
+		if !(isNull _instigator) then {
+			if (side _unit == side _instigator) then {
+				private _shooter = name _instigator;
+				private _currentCount = cafe_playerFriendlyFires getOrDefault [_shooter, 0];
+				private _newCount = _currentCount + 1;
+				cafe_playerFriendlyFires set [_shooter, _newCount];
+			};
+		};
+	}]
 };
