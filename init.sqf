@@ -48,7 +48,6 @@ if (IS_CLIENT) then
 	#include "startup\components\groups\clientStartupGroup.sqf"
 
 	missionNamespace setVariable ["f_var_initClient", true];
-
 };
 
 if (isServer) then

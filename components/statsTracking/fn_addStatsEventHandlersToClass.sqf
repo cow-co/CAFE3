@@ -7,6 +7,7 @@ if !(_unit isEqualTo player) exitWith {};
 
 if (hasInterface) then 
 {
+	cafe_playerPos = getPos player;
 	["ace_firedPlayer", 
 	{
 		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
@@ -43,7 +44,28 @@ if (hasInterface) then
 
 		_text = _text + (_tableRows call BIS_fnc_alignTabs);
 		_text = _text + format ["<br/>You went unconscious %1 time(s)<br/>", cafe_playerUncons];
+		_text = _text + format ["<br/>You have travelled %1 metres on foot<br/>", cafe_playerFootDistance];
+		_text = _text + format ["<br/>You have travelled %1 metres in vehicles<br/>", cafe_playerVicDistance];
 
 		missionNamespace setVariable ["cafe_playerStatsStr", _text, false];
 	}];
+
+	player addEventHandler ["GetInMan",
+	{
+		cafe_playerInVic = true;
+	}];
+
+	player addEventHandler ["GetOutMan",
+	{
+		cafe_playerInVic = false;
+	}];
+
+
+	while {true} do {
+		private _until = diag_tickTime + 1 * 60;
+		if (diag_tickTime > _until) then {
+			hint "calling";
+			call f_fnc_handleDistanceTravelled;
+		};
+	};
 };
