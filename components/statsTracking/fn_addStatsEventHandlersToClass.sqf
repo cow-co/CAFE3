@@ -7,6 +7,7 @@ if !(_unit isEqualTo player) exitWith {};
 
 if (hasInterface) then 
 {
+	cafe_playerPos = getPos player;
 	["ace_firedPlayer", 
 	{
 		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
@@ -43,6 +44,8 @@ if (hasInterface) then
 
 		_text = _text + (_tableRows call BIS_fnc_alignTabs);
 		_text = _text + format ["<br/>You went unconscious %1 time(s)<br/>", cafe_playerUncons];
+		_text = _text + format ["<br/>You have travelled %1 metres on foot<br/>", cafe_playerFootDistance];
+		_text = _text + format ["<br/>You have travelled %1 metres in vehicles<br/>", cafe_playerVicDistance];
 		_text = _text + "<br/>You were friendly fired by the following people: <br/>";
 
 		{
@@ -62,5 +65,17 @@ if (hasInterface) then
 				cafe_playerFriendlyFires set [_shooter, _newCount];
 			};
 		};
-	}]
+	}];
+
+	_unit addEventHandler ["GetInMan",
+	{
+		cafe_playerInVic = true;
+	}];
+
+	_unit addEventHandler ["GetOutMan",
+	{
+		cafe_playerInVic = false;
+	}];
+
+	cafe_posTrackHandle = [{call f_fnc_handleDistanceTravelled;}, 10] call CBA_fnc_addPerFrameHandler;
 };
