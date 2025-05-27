@@ -60,12 +60,5 @@ if (hasInterface) then
 		cafe_playerInVic = false;
 	}];
 
-
-	while {true} do {
-		private _until = diag_tickTime + 1 * 60;
-		if (diag_tickTime > _until) then {
-			hint "calling";
-			call f_fnc_handleDistanceTravelled;
-		};
-	};
+	cafe_posTrackHandle = [{call f_fnc_handleDistanceTravelled;}, 10] call CBA_fnc_addPerFrameHandler;
 };
