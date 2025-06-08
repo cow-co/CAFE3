@@ -6,3 +6,4 @@ cafe_playerVicDistance = 0;
 cafe_playerInVic = false;
 cafe_playerPos = [0,0,0];
 cafe_posTrackHandle = -1;
+cafe_teleportDistThreshold = 200;

@@ -1,14 +1,15 @@
-private _displacement = (getPos player) - cafe_playerPos;
+private _newPlayerPos = getPos player;
+private _displacement = _newPlayerPos vectorDiff cafe_playerPos;
 private _magnitude = vectorMagnitude _displacement;
 
-if (cafe_playerInVic) then {
-	cafe_playerVicDistance =  cafe_playerVicDistance + _magnitude;
-	hint format ["You have travelled %1 metres in a vehicle", cafe_playerVicDistance];
+if (_magnitude < cafe_teleportDistThreshold) then {
+	if (cafe_playerInVic) then {
+		cafe_playerVicDistance =  cafe_playerVicDistance + _magnitude;
+	};
+
+	if (!cafe_playerInVic) then {
+		cafe_playerFootDistance =  cafe_playerFootDistance + _magnitude;
+	};
 };
 
-
-
-if (!cafe_playerInVic) then {
-	cafe_playerFootDistance =  cafe_playerFootDistance + _magnitude;
-	hint format ["You have travelled %1 metres on foot", cafe_playerFootDistance];
-};
+cafe_playerPos = _newPlayerPos;

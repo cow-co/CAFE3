@@ -7,7 +7,12 @@ if !(_unit isEqualTo player) exitWith {};
 
 if (hasInterface) then 
 {
-	cafe_playerPos = getPos player;
+	cafe_playerPos = getPos player;private _isInVic = false;
+
+	if (vehicle player != player) then {
+		cafe_playerInVic = true;
+	};
+	
 	["ace_firedPlayer", 
 	{
 		params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile"];
@@ -53,6 +58,7 @@ if (hasInterface) then
 		} forEach cafe_playerFriendlyFires;
 
 		missionNamespace setVariable ["cafe_playerStatsStr", _text, false];
+		[cafe_posTrackHandle] call CBA_fnc_removePerFrameHandler;
 	}];
 
 	_unit addMPEventHandler ["MPHit", {
@@ -67,15 +73,17 @@ if (hasInterface) then
 		};
 	}];
 
-	_unit addEventHandler ["GetInMan",
-	{
+	_unit addEventHandler ["GetInMan", {
 		cafe_playerInVic = true;
 	}];
 
-	_unit addEventHandler ["GetOutMan",
-	{
+	_unit addEventHandler ["GetOutMan", {
 		cafe_playerInVic = false;
 	}];
 
-	cafe_posTrackHandle = [{call f_fnc_handleDistanceTravelled;}, 10] call CBA_fnc_addPerFrameHandler;
+	_unit addEventHandler ["Respawn", {
+		cafe_playerPos = getPos player;
+	}];
+
+	cafe_posTrackHandle = [{call f_fnc_handleDistanceTravelled;}, 1] call CBA_fnc_addPerFrameHandler;
 };
